@@ -77,6 +77,11 @@ const posts = [
 for (let i = 0; i < posts.length; i++) {
     let postElement = posts[i];
     const containerSection = document.getElementById('container')
+
+    if (postElement.author.image === null) {
+        postElement.author.image = 'https://unsplash.it/300/300?image=1'
+    }
+    
     
     const markup = `
     <div class="post">
@@ -98,7 +103,7 @@ for (let i = 0; i < posts.length; i++) {
             <div class="post__footer">
                 <div class="likes js-likes">
                     <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <a class="like-button js-like-button" data-postid="1">
                             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
                             <span class="like-button__label">Mi Piace</span>
                         </a>
@@ -113,4 +118,12 @@ for (let i = 0; i < posts.length; i++) {
 
     //stampo
     containerSection.innerHTML += markup
+
+    
+    const buttonElement = document.querySelector(".js-like-button")
+    
+    buttonElement.addEventListener('click', function () {
+        buttonElement.style.color = "#6495ed";
+        postElement.likes + 1
+    })
 }
